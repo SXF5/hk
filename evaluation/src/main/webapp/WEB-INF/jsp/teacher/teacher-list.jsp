@@ -216,9 +216,7 @@
       layui.use(['laydate','form'], function(){
         var laydate = layui.laydate;
         var  form = layui.form;
-
-
-        // 监听全选
+       // 监听全选
         form.on('checkbox(checkall)', function(data){
 
           if(data.elem.checked){
