@@ -210,7 +210,7 @@ public class TeacherController {
             ModelAndView mv = new ModelAndView("teacher/evateacherlist");		
             mv.addObject("evatea",evatea);
             mv.addObject("teacherid",teacher.getTeacherid());
-            System.out.println(teacher.getTeacherid());
+           
 			return mv;
 		}
 		
@@ -218,10 +218,10 @@ public class TeacherController {
 		@RequestMapping("questions")
 		public ModelAndView questions(int teacherid,int teachingid) {
 			
-			ModelAndView mv = new ModelAndView("teacher/questions");
+			 ModelAndView mv = new ModelAndView("teacher/questions");
 			 mv.addObject("teacherid",teacherid);
 	         mv.addObject("teachingid",teachingid);
-			return mv;
+			 return mv;
 		}
 		
 }
