@@ -195,7 +195,7 @@ margin-top:10px;}
                          <div class="layui-card-body ">
                             <form class="layui-form layui-col-space5" action="${pageContext.request.contextPath}/course/mselect">
                                 <div class="layui-inline layui-show-xs-block">
-                                    <input id="mlike" type="text" name="coursename"  placeholder="请输入课程名" autocomplete="off" class="layui-input">
+                                    <input id="mlike" type="text" name="name"  placeholder="请输入教师姓名" autocomplete="off" class="layui-input">
                                 </div>
                                 <div class="layui-inline layui-show-xs-block">
                                     <button type="submit" class="layui-btn"  lay-submit=""   lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
@@ -273,11 +273,6 @@ margin-top:10px;}
                                 		 <td>${item.cla.classname }</td> 
                                 		
 										<td class="td-manage">
-										<button class="layui-btn layui-btn layui-btn-xs" 
-										onclick="xadmin.open('编辑','${pageContext.request.contextPath}/course/course-update?courseid=${li.courseid }',600,400)"
-											href="javascript:;"> <i class="layui-icon">&#xe642;</i>修改
-										</button> 
-									
 										<button class="layui-btn-danger layui-btn layui-btn-xs"
 												onclick="del('${item.teachingid}')" href="javascript:;">
 												<i class="layui-icon">&#xe640;</i>删除

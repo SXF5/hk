@@ -151,6 +151,7 @@ public class TeacherController {
 		public ResultMsg Byincourse(String ids) {
 			//System.out.println(ids);
 			String[] teacherids = ids.split(",");
+			System.out.println(ids);
 			int i = teacherService.delAllTeacher(teacherids);
 			if(i>0) {
 				return new ResultMsg(1, "删除成功");

@@ -8,15 +8,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
-
 import evaluation.entity.Student;
 import evaluation.entity.Teacher;
+import evaluation.entity.Teaching;
 import evaluation.service.ClasstbService;
 import evaluation.service.StudentService;
 import evaluation.util.Excelutil;
@@ -32,33 +32,61 @@ public class StudentController {
 	private StudentService getStus;
 	@Autowired
 	private ClasstbService claser;
-
-
-
 	
 	//学生列表
-
 	@RequestMapping("/studentlist")
 	public ModelAndView studentlist() {
 		List<Student> students = getStus.getStus();
 		ModelAndView mv = new ModelAndView("student/studentlist");
 		mv.addObject("students", students);
-
+		return mv;
+	}
+	
+	@RequestMapping("studentlogin")
+	 public ModelAndView  studentlogin(Model model,Student student){
+	      Student student2=getStus.getStudent(student);
+		 model.addAttribute("student",student);
+		 ModelAndView mv=new ModelAndView("student/index");
+		 mv.addObject("student2", student2);
+		 boolean islogin=getStus.login(student.getStudentnumber(), student.getPassword());
+		 if (islogin) {
+			return mv;
+		}else {
+			return mv;
+		}
+	}
+	
+	
+	
+	//学生登录
+	@RequestMapping("/login")
+	public ModelAndView login() {
+		ModelAndView mv = new ModelAndView("student/login");
+		return mv;
+	}
+	
+	@RequestMapping("/evalist")
+	public ModelAndView evalist(Integer studentid,String coursename,String name,Integer teachingid) {
+		ModelAndView mv = new ModelAndView("student/evalist");
+		mv.addObject("studentid",studentid);
+		mv.addObject("coursename",coursename);
+		mv.addObject("name",name);
+		mv.addObject("teachingid",teachingid);
 		return mv;
 	}
 	
 	//学生主页面
-	@RequestMapping("/index")
-	public ModelAndView index() {
-		ModelAndView mv = new ModelAndView("student/index");
-		return mv;
-	}
+		@RequestMapping("/studenteva")
+		public ModelAndView studenteva(Integer classid,Integer studentid) {
+			List<Teaching> tc=getStus.getTeacher(classid);
+			ModelAndView mv = new ModelAndView("student/studenteva");
+			mv.addObject("tc",tc);
+			mv.addObject("studentid",studentid);
+			return mv;
+		}
 
-//年龄计算
+	//年龄计算
 	@RequestMapping("/getAge")
-
-
-
 	public ModelAndView getAge(String  birthday) throws ParseException{
 		  System.out.println("1");
 		 SimpleDateFormat myFormatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -70,8 +98,6 @@ public class StudentController {
 	}
 
 	//修改提交
-	
-
 	private int getAgeByBirth(Date mydate) {
 		// TODO Auto-generated method stub
 		return 0;
@@ -80,7 +106,6 @@ public class StudentController {
 	// 修改学生界面
 	@RequestMapping("/studentedit")
 	public ModelAndView studentedit(int studentid) {
-
 		Student stu = getStus.getStudentBystuid(studentid);
 		List<Classtb> clas = claser.getclass();
 		ModelAndView mv = new ModelAndView("student/studentedit");
@@ -99,7 +124,6 @@ public class StudentController {
 			return new ResultMsg(1, "更新学生成功");
 
 		}
-
 		return new ResultMsg(0, "更新学生失败");
 
 	}

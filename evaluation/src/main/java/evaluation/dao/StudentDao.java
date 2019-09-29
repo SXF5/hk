@@ -3,6 +3,8 @@ package evaluation.dao;
 import java.util.List;
 
 import evaluation.entity.Student;
+import evaluation.entity.Teacher;
+import evaluation.entity.Teaching;
 
 public interface StudentDao {
 	
@@ -16,5 +18,10 @@ public interface StudentDao {
 	int studentdel(int studentid);
 	//批量删除
 	int studentall(String[] aa1);
+	
 	int studentadd(Student student);
+	
+	List<Teaching> getTeacher(int classid);
+	
+	Student getStudent(Student student);
 }

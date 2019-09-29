@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import evaluation.dao.StudentDao;
 import evaluation.entity.Student;
+import evaluation.entity.Teacher;
+import evaluation.entity.Teaching;
 
 
 
@@ -28,6 +30,10 @@ public class StudentService {
 			
 		}
 		
+		public Student getStudent(Student student) {
+			return studentDao.getStudent(student);
+		}
+		
 		//修改
 		public int updateStudent(Student student) {
 			return studentDao.updateStudent( student);
@@ -47,4 +53,21 @@ public class StudentService {
 			
 			return studentDao.studentadd(student);
 		} 
+        
+        public List<Teaching> getTeacher(int classid){
+        	return studentDao.getTeacher(classid);
+        }
+        
+      //登录判断
+    	public boolean login(String studentnumber,String password) {
+    		Student student=new Student();
+    		student.setStudentnumber(studentnumber);
+    		student.setPassword(password);
+    		Student s=studentDao.getStudent(student);
+    		if(s!=null){
+    			return true;
+    		}
+    		return false;
+    		}
+        
 	}

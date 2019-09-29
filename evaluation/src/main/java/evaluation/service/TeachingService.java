@@ -59,6 +59,7 @@ public class TeachingService {
 		return teachingDao.getCourse();
 	}
 	
+	
 	public int delcheck(String[] ids1) {
 		return teachingDao.delcheck(ids1);
 	}

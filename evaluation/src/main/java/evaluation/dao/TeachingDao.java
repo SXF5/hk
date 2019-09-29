@@ -31,6 +31,8 @@ public interface TeachingDao {
 	
 	List<Teaching> getCourse();
 	
+	
+	
 	int delcheck(String[] ids1);
 	
 }

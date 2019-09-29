@@ -48,17 +48,17 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="layui-card-header">
+                         <div class="layui-card-header"> 
                             <button class="layui-btn layui-btn-danger layui-btn-lg" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
                             <button class="layui-btn layui-btn-lg" onclick="xadmin.open('添加教师','add',600,400)"><i class="layui-icon"></i>添加</button>
-                        </div>
+                      	</div> 
                         <div class="layui-card-body layui-table-body layui-table-main">                            
-                            <table class="layui-table" lay-filter="mylist" lay-size="lg">
+                            <table class="layui-table" lay-filter="mylist" lay-size="lg" id="mylist">
 							<thead>
 								<tr>
 									<th lay-data="{type:'checkbox',fixed:'left'}">
 									<input type="checkbox" lay-filter="checkall" name="" lay-skin="primary"></th>
-									<th lay-data="{field:'xx', align:'center',width:60}">id</th>
+									<th lay-data="{field:'id', align:'center',width:60}">id</th>
 									<th lay-data="{field:'name', align:'center',width:60}">姓名</th>
 									<th lay-data="{field:'number',align:'center', Width:60}">账号</th>
 									<th lay-data="{field:'sex',align:'center', Width:60}">性别</th>
@@ -76,7 +76,7 @@
 							<tbody>
 							<c:forEach items="${teachers}" var="teacher">
 								<tr>
-									<td><input type="checkbox" name=""  lay-skin="primary"></td>
+									<td><input type="checkbox" name="check"  lay-skin="primary"></td>
 									<td>${teacher.teacherid}</td>
 					                <td>${teacher.name}</td>
 					                <td>${teacher.teachernumber}</td>
@@ -88,7 +88,7 @@
 					                
 					                </td>
 					                
-					                <td id="b${teacher.teacherid}" >	
+					                <td id="b${teacher.teacherid}" ></td>	
 					                <td>${teacher.majorid}</td>
 					                <td>${teacher.power}</td>
 					                <%-- <td>${teacher.remarks}</td>  --%>
@@ -255,10 +255,12 @@
       }
       /*批量删除*/
       function delAll (argument) {
+    	var table = layui.table;
         var ids = "";
+        var tmp = table.checkStatus("mylist");
 
         // 获取选中的id 
-        $('tbody input').each(function(index, el) {
+        $('tbody input[name="check"]').each(function(index, el) {
         	var teacherid = $(this).parent().next();
             if($(this).prop('checked')){
               // ids.push($(this).val())
