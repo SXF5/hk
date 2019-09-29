@@ -111,7 +111,7 @@
                                     <cite>课程列表</cite></a>
                             </li>
                             <li>
-                                <a onclick="xadmin.add_tab('授课页面','welcome1.html')">
+                                <a onclick="xadmin.add_tab('授课页面','${pageContext.request.contextPath}/teaching/teachinglist')">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>授课列表</cite></a>
                             </li>   
@@ -124,7 +124,7 @@
                             <i class="iconfont nav_right">&#xe697;</i></a>
                         <ul class="sub-menu">
                             <li>
-                                <a onclick="xadmin.add_tab('得分表','welcome1.html')">
+                               <a onclick="xadmin.add_tab('得分列表','${pageContext.request.contextPath}/score/scorelist')">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>得分表</cite></a>
                             </li>   

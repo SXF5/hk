@@ -4,12 +4,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html class="x-admin-sm">
+
 <head>
 <meta charset="UTF-8">
 <title>欢迎页面-X-admin2.2</title>
 <meta name="renderer" content="webkit">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<!-- <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" /> -->
 <link rel="stylesheet" href="../css/font.css">
 <link rel="stylesheet" href="../css/xadmin.css">
 <script src="../lib/layui/layui.js" charset="utf-8"></script>
@@ -43,18 +43,21 @@
 			<div class="layui-col-md12">
 				<div class="layui-card">
 					<div class="layui-card-body ">
-						<form class="layui-form layui-col-space5">
+						<form class="layui-form layui-col-space5"
+							action="${pageContext.request.contextPath}/student/mselect">
 							<div class="layui-inline layui-show-xs-block">
-								<input type="text" name="username" placeholder="请输入用户名"
+								<input type="text" name="name" placeholder="请输入学生名"
 									autocomplete="off" class="layui-input">
 							</div>
 							<div class="layui-inline layui-show-xs-block">
-								<button class="layui-btn" lay-submit="" lay-filter="sreach">
+								<button type="submit" id="mlike" class="layui-btn" lay-submit=""
+									lay-filter="sreach">
 									<i class="layui-icon">&#xe615;</i>
 								</button>
 							</div>
 						</form>
 					</div>
+
 
 					<div class="layui-card-header">
 						<button class="layui-btn layui-btn-danger" onclick="delAll()">
@@ -85,18 +88,21 @@
 									</th>
 								</tr>
 							</thead>
-							<tbody >
+							<tbody>
 								<c:forEach items="${students}" var="item">
 									<tr>
+
 										<td><input type="checkbox" name="" lay-skin="primary">
 										</td>
-										<td name="stunum">${item.studentnumber}</td>
+										<td>${item.studentnumber}</td>
+
 										<td>${item.name}</td>
 										<td>${item.sex}</td>
 										<td>${item.tel}</td>
 										<td>${item.cla.classname}</td>
 										<td id="bir${item.studentid}" name="bird"><fmt:formatDate
-												value="${item.birthday }" pattern="yyyy-MM-dd" /></td>
+												value="${item.birthday }" pattern="yyyy-MM-dd" />
+												</td>
 										<td id="b${item.studentid}" name="nl"></td>
 
 										<td class="td-manage">
@@ -112,6 +118,7 @@
 											</button>
 										</td>
 									</tr>
+
 								</c:forEach>
 							</tbody>
 						</table>
@@ -141,7 +148,27 @@
 		});
 	});
 	//生日转换
+  	
+    	//监听头工具栏事件
+		/* table.on('toolbar(mylist)', function(obj){
+			var checkStatus = table.checkStatus(obj.config.id)
+			,data = checkStatus.data; //获取选中的数据 
+			switch(obj.event){ 
+			 case 'add': 
+				
+			break;
+			case 'update':
+				
+			break;
+			case 'delete':
+				
+			break; 
+			};
+		}); */
+   
+    //生日转换
 
+ 
 	function dateFormat(date, format) {
 		date = new Date(date);
 		date.setHours(date.getHours() - 14);
@@ -164,7 +191,6 @@
 			if (new RegExp('(' + k + ')').test(format))
 				format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k]
 						: ('00' + o[k]).substr(('' + o[k]).length));
-
 		return format;
 	}
 
@@ -203,18 +229,36 @@
 				age = year - parseInt(csrq.substring(0, 4)) - 1;
 			}
 
-			var s = i + 1;
-			
+			var s = i + 1;			
 			$("#b" + s).html(age);
 		}
 
-	}
+
+      };
+      /*用户-删除*/
+      function member_del(obj,studentid){
+    	
+               layer.confirm('确认要删除吗？',function(index){
+    	        var url="${pageContext.request.contextPath}/student/studentdel?studentid="+studentid;
+        	   	$.post(url,function(data){
+    	   		if(data.flag==1){
+    	   			layer.closeAll();
+    	   			location.reload();
+    	   			
+    				}
+   	   	})
+    	   	
+          });
+      }
+
+
 
 	layui.use([ 'laydate', 'form' ], function() {
 		var laydate = layui.laydate;
 		var form = layui.form;
 		// 监听全选
 		form.on('checkbox(checkall)', function(data) {
+
 
 			if (data.elem.checked) {
 				$('tbody input').prop('checked', true);
@@ -253,9 +297,10 @@
 
 						});
 	}
-	//学生批量删除
+	
 </script>
 <script>
+//学生批量删除
 	function delAll(argument) {
 		var ids = [];
 		// 获取选中的id 
@@ -292,10 +337,40 @@
 		});
 	}
 
-	//调用年龄函数
-	window.onload = function() {
-		jsageall();
-	}
+	
+   //模糊查询
+      function selectm(){
+     	 var name = $("#mlike").val();
+     	 alert(name);
+     	 $.ajax({
+     		 type:"post",
+     		 url:"${pageContext.request.contextPath}/student/mselect",
+     		 data:{"name":name},
+     		 success:function(data){
+     			 if(data.flag == 1){
+          			layer.alert("查询成功", {
+                          icon: 1
+                      },function(){
+                      	xadmin.father_reload();
+                      });
+          		}else{
+          			layer.alert("查询失败", {
+                         icon: 1
+                     },function(){
+                     	xadmin.father_reload();
+                     });
+          		}
+     		 }
+     	 })
+      }
+      
+      
+    </script>
+<script type="text/javascript">
+//调用年龄函数
+window.onload = function() {
+	jsageall();
+}
 </script>
 
 </html>

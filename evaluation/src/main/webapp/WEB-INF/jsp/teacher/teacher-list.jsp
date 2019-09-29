@@ -41,10 +41,10 @@
                         <div class="layui-card-body ">
                             <form class="layui-form layui-col-space5" action="${pageContext.request.contextPath}/teacher/mselect">
                                 <div class="layui-inline layui-show-xs-block">
-                                    <input id="mlike" type="text" name="name"  placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                                    <input id="mlike" type="text" name="name"  placeholder="请输入教师姓名" autocomplete="off" class="layui-input">
                                 </div>
                                 <div class="layui-inline layui-show-xs-block ">
-                                    <button class="layui-btn layui-btn-lg"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+                                    <button  type="submit" class="layui-btn layui-btn-lg"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
                                 </div>
                             </form>
                         </div>
@@ -52,7 +52,7 @@
                             <button class="layui-btn layui-btn-danger layui-btn-lg" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
                             <button class="layui-btn layui-btn-lg" onclick="xadmin.open('添加教师','add',600,400)"><i class="layui-icon"></i>添加</button>
                         </div>
-                        <div class="layui-card-body layui-table-body layui-table-main">
+                        <div class="layui-card-body layui-table-body layui-table-main">                            
                             <table class="layui-table" lay-filter="mylist" lay-size="lg">
 							<thead>
 								<tr>
@@ -94,9 +94,11 @@
 					                <%-- <td>${teacher.remarks}</td>  --%>
 									<td class="td-manage">                                     
                                       <button class="layui-btn layui-btn"  onclick="xadmin.open('编辑','update?teacherid=${teacher.teacherid}',600,400)" href="javascript:;">
+
                                         <i class="layui-icon">&#xe642;</i>编辑
                                       </button>
-                                      <button class="layui-btn-warm layui-btn"  onclick="xadmin.open('修改密码','member-password.html',600,400)" title="重置密码" href="javascript:;">
+
+                                      <button class="layui-btn-warm layui-btn layui-btn-xs"  onclick="resetpwd('${teacher.teacherid}')" title="重置密码" href="javascript:;">       
                                         <i class="layui-icon">&#xe631;</i>重置密码
                                       </button>
                                       <button class="layui-btn-danger layui-btn" onclick="del('${teacher.teachernumber}')" href="javascript:;">
@@ -280,8 +282,23 @@
             		}
             	}            	  
               })
-        });
-      }  
+        });           
+     } 
+      
+      function resetpwd(teacherid){
+    	  var result=confirm("是否重置?");
+    	  if(result){
+    		  var url="${pageContext.request.contextPath}/teacher/resetpwd";
+    		  var param={teacherid:teacherid};
+    		  $.post(url,param,function(data){
+    			  alert(data.content);
+    			  if(data.flag==1){
+    				  location.reload();
+    			  }
+    		  });  
+    	  }
+    	}
+        
       
     //模糊查询
       function selectm(){

@@ -9,9 +9,12 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import org.springframework.web.multipart.MultipartFile;
+
 import org.springframework.web.servlet.ModelAndView;
 
+import evaluation.entity.Result;
 import evaluation.entity.ResultMsg;
 import evaluation.entity.Teacher;
 import evaluation.service.TeacherService;
@@ -36,14 +39,14 @@ public class TeacherController {
 			return mv;
 		}
 	
-	//教师列表
+	/*//教师列表
 	@RequestMapping("/teacher-list")
 	 public ModelAndView Teacher() {
 		List<Teacher> teachers=teacherService.getTeachers();
 		 ModelAndView mv=new ModelAndView("teacher/teacher-list");
 		 mv.addObject("teachers", teachers);
 		 return mv;
-	 }
+	 }*/
 		
 	@RequestMapping("/delete")
 	 public ModelAndView Delete(String teachernumber) {
@@ -94,11 +97,25 @@ public class TeacherController {
 		}
 	
 
+	 @RequestMapping("/resetpwd")
+	 @ResponseBody
+	 public Result resetpwd(int teacherid) {
+		   int i=teacherService.resetpwd(teacherid);
+		   if(i>0) {
+			   return new Result(1, "重置成功");
+		   }else {
+			   return new Result(0, "重置失败");
+		   }
+	 }
+	
+
+
 
 
 	//登录页面   
+
 	@RequestMapping("/teacherlist")
-	public ModelAndView Studentlist() {
+	public ModelAndView Teacherlist() {
 		List<Teacher> teachers =teacherService.getTeachersmajor();
 		ModelAndView mv = new ModelAndView("teacher/teacher-list");
 		mv.addObject("teachers", teachers);
@@ -184,6 +201,27 @@ public class TeacherController {
 	 			map.put("reslut1", 2);
 	 		}
 	       return "teacher/teacher-import";
+		}
+		
+		@RequestMapping("evateacher")
+		public ModelAndView evateacherlist(Teacher teacher) {
+			
+			List<Teacher> evatea =teacherService.getTeachering(teacher);
+            ModelAndView mv = new ModelAndView("teacher/evateacherlist");		
+            mv.addObject("evatea",evatea);
+            mv.addObject("teacherid",teacher.getTeacherid());
+            System.out.println(teacher.getTeacherid());
+			return mv;
+		}
+		
+		
+		@RequestMapping("questions")
+		public ModelAndView questions(int teacherid,int teachingid) {
+			
+			ModelAndView mv = new ModelAndView("teacher/questions");
+			 mv.addObject("teacherid",teacherid);
+	         mv.addObject("teachingid",teachingid);
+			return mv;
 		}
 		
 }

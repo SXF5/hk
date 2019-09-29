@@ -3,7 +3,14 @@ package evaluation.entity;
 import java.util.Date;
 
 public class Teacher {
+
 	private int teacherid;
+	public int getTeacherid() {
+		return teacherid;
+	}
+	public void setTeacherid(int teacherid) {
+		this.teacherid = teacherid;
+	}
 	private String teachernumber;
 	private String password;
 	private String name;
@@ -14,18 +21,22 @@ public class Teacher {
 	private Date birthday;
 	private int majorid;
 	private Major maj;
+	private Teaching teaching;
+	
+	public Teaching getTeaching() {
+		return teaching;
+	}
+	public void setTeaching(Teaching teaching) {
+		this.teaching = teaching;
+	}
 	public Major getMaj() {
 		return maj;
 	}
 	public void setMaj(Major maj) {
 		this.maj = maj;
 	}
-	public int getTeacherid() {
-		return teacherid;
-	}
-	public void setTeacherid(int teacherid) {
-		this.teacherid = teacherid;
-	}
+	
+	
 	public String getTeachernumber() {
 		return teachernumber;
 	}

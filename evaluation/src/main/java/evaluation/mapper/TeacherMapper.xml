@@ -28,6 +28,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</association>
 		
 	</resultMap>
+	
+	
+	<resultMap id="teachering" type="evaluation.entity.Teacher">
+      
+		<id property="teacherid" column="teacherid" />
+		<result property="name" column="name" />
+		<result property="sex" column="sex" />
+		<result property="teachernumber" column="teachernumber" />
+		<result property="phone" column="phone" />
+		<result property="password" column="password" />
+		<result property="power" column="power" />
+		<result property="majorid" column="majorid" />
+		<result property="remarks" column="remarks" />		
+		<result property="birthday" column="birthday" />
+		<association property="teaching"
+			javaType="evaluation.entity.Teaching">
+			<id property="teachingid" column="teachingid" />
+			<result property="classid" column="classid" />
+			<result property="courseid" column="courseid" />
+			<result property="teacherid" column="teacherid" />
+		</association>
+		
+	</resultMap>
 
       <select id="getTeachersmajor" resultMap="teachertm">
       	select * from teacher,major where	teacher.majorid=major.majorid;
@@ -82,6 +105,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      <select id="getteacherpower"  resultType="evaluation.entity.Teacher">
      select * from teacher 
      </select>
+     <!-- 教师权限修改 -->
       <update id="updatepower"  >
        update teacher set power=#{power} where teacherid=#{teacherid}
     
@@ -89,6 +113,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
      
+
+    <update id="resetpwd" parameterType="int">
+		update teacher set password='123456' where teacherid=#{teacherid}
+	  </update> 
+      
+
 
 <!-- 根据多个id删除多个教师 -->
      	<delete id="delAllTeacher" parameterType="java.lang.String">
@@ -99,10 +129,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      	</delete>
 
  <!-- 模糊查询 -->
-     	<select id="mhselect" parameterType="String" resultType="evaluation.entity.Teacher">
-     		select * from teacher where name like '%${name}%'
+     	<select id="mhselect" parameterType="String" resultMap="teachertm">
+     		select * from teacher,major where name like '%${name}%'
      	</select>      
-
-
+<!-- 查询被评人 -->
+    <select id="getTeachernot" parameterType="evaluation.entity.Teacher" resultType="evaluation.entity.Teacher">
+       select * from teacher where teacherid not in(#{teacherid}) and majorid=#{majorid};
+     </select>
+     <!--  -->
+    <select id="getTeachering" parameterType="evaluation.entity.Teacher" resultMap="teachering">
+      select * from teacher  left join teaching  on teaching.teacherid=teacher.teacherid 
+	  where teacher.teacherid not in(#{teacherid}) and teacher.majorid=#{majorid};
+     </select>
 
 </mapper>

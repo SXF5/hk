@@ -56,8 +56,10 @@ public class ManagerController {
 
 	 @RequestMapping("/managerlogin")
 	 public ModelAndView  managerlogin(Model model,Teacher teacher){
-		 model.addAttribute("teacher",teacher);
-		 ModelAndView mv=new ModelAndView("manager/index");
+		// model.addAttribute("teacher",teacher);
+		 Teacher teach=teacherService.geTeacher(teacher);
+		 ModelAndView mv=new ModelAndView("teacher/index");
+		 mv.addObject("teach",teach);
 		 ModelAndView mv2=new ModelAndView("manager/welcome");
 		 boolean isLogin=teacherService.login(teacher.getTeachernumber(),teacher.getPassword());
 		 if(isLogin) {

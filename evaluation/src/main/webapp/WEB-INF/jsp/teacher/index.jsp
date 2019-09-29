@@ -4,7 +4,7 @@
 <html class="x-admin-sm">
     <head>
         <meta charset="UTF-8">
-        <title>学生</title>
+        <title>教师</title>
         <meta name="renderer" content="webkit|ie-comp|ie-stand">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <!-- <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" /> -->
@@ -48,7 +48,7 @@
             </ul>
             <ul class="layui-nav right" lay-filter="">
                 <li class="layui-nav-item">
-                    <a href="javascript:;">学生姓名</a>
+                    <a href="javascript:;">${teach.name}</a>
                     <dl class="layui-nav-child">
                         <!-- 二级菜单 -->
                         <dd>
@@ -85,27 +85,29 @@
                     
                     <li>
                         <a href="javascript:;">
-                            <i class="iconfont left-nav-li" lay-tips="教学评价">&#xe6b8;</i>
-                            <cite>教学评价</cite>
+                            <i class="iconfont left-nav-li" lay-tips="评价管理">&#xe6b8;</i>
+                            <cite>评价管理</cite>
                             <i class="iconfont nav_right">&#xe697;</i></a>
                         <ul class="sub-menu">
-                        	<li>
-                                <a onclick="xadmin.add_tab('教师评价','${pageContext.request.contextPath}/faculty/facultylist')">
+                        <li>
+                       
+                               <a onclick="xadmin.add_tab('同行评审','${pageContext.request.contextPath}/teacher/evateacher?teacherid=${teach.teacherid}&majorid=${teach.majorid} ')">
                                     <i class="iconfont">&#xe6a7;</i>
-                                    <cite>教师评价</cite></a>
+                                    <cite>同行评审</cite></a>
                             </li>  
+                        	 
                         </ul>
                     </li>                                 
                     <li>
                         <a href="javascript:;">
-                            <i class="iconfont left-nav-li" lay-tips="教学管理">&#xe6b8;</i>
-                            <cite>教学管理</cite>
+                            <i class="iconfont left-nav-li" lay-tips="得分管理">&#xe6b8;</i>
+                            <cite>得分管理</cite>
                             <i class="iconfont nav_right">&#xe697;</i></a>
                         <ul class="sub-menu">
                             <li>
-                                <a onclick="xadmin.add_tab('我的课程','welcome1.html')">
+                                <a onclick="xadmin.add_tab('查看得分','welcome1.html')">
                                     <i class="iconfont">&#xe6a7;</i>
-                                    <cite>我的课程</cite></a>
+                                    <cite>查看得分</cite></a>
                             </li>   
                         </ul>
                     </li>      
