@@ -23,6 +23,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</association>
 	</resultMap>
 	
+	
+	<resultMap id="teachingtn" type="evaluation.entity.Teaching">    
+		<id property="teachingid" column="teachingid" />
+		<result property="courseid" column="courseid" />
+		<result property="classid" column="classid" />
+		<result property="teacherid" column="teacherid" />
+		<association property="cou" javaType="evaluation.entity.Course">
+			<id property="courseid" column="courseid" />
+			<result property="coursename" column="coursename" />
+			<result property="coursenumber" column="coursenumber" />
+			<result property="majorid" column="majorid" />
+		</association>
+		<association property="te" javaType="evaluation.entity.Teacher">
+		<id property="teacherid" column="teacherid" />
+		<result property="name" column="name" />
+		<result property="sex" column="sex" />
+		<result property="teachernumber" column="teachernumber" />
+		<result property="phone" column="phone" />
+		<result property="password" column="password" />
+		<result property="power" column="power" />
+		<result property="majorid" column="majorid" />
+		<result property="remarks" column="remarks" />		
+		<result property="birthday" column="birthday" />
+		</association>
+	</resultMap>
+	
+	 <select id="getStudent" parameterType="evaluation.entity.Student" resultType="evaluation.entity.Student">
+		select * from student where studentnumber=#{studentnumber} and password=#{password}
+      </select> 
       <select id="getStus" resultMap="studentm">
       	select * from student,classtb where
 		student.classid=classtb.classid
@@ -56,8 +85,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	   </foreach>
 	  </delete>
 	  
+
 	   <!-- 模糊查询 -->
      	<select id="mhselect" parameterType="String" resultMap="studentm">
      		select * from student,classtb where name like '%${name}%'
      	</select>
+
+	  <select id="getTeacher" parameterType="int" resultMap="teachingtn">
+	  select teaching.teachingid,course.coursename,teacher.name from teaching left join course on teaching.courseid=course.courseid
+	  left join teacher on teaching.teacherid=teacher.teacherid  where teaching.classid=#{classid}
+	  </select>
+	  
+	  <!-- 根据number查询学生 -->
+       <select id="getStudentBystuno"  resultMap="studentm">
+	   select * from student,classtb where studentnumber=#{studentnumber} and student.classid=classtb.classid
+	  </select>
+	  
+	  <!-- 学生信息修改 -->
+	  <update id="Studentupdate">
+	  update student set name=#{name},sex=#{sex},tel=#{tel},password=#{password} where studentnumber=#{studentnumber}
+	  </update>
+	  
+
 </mapper>

@@ -25,5 +25,5 @@ public interface ScoreDao {
 	List<Score> mhselect(@Param("teachername")String teachername);
 	//保存问题
 	int insertquestion(Score score);
-
+    int insertScore(Score score);
 }

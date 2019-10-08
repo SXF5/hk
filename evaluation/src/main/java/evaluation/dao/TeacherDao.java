@@ -39,6 +39,12 @@ public interface TeacherDao {
 		
 		List<Teacher> getTeachernot(Teacher teacher);
 		
-	//修改個人信息
+    //评价
 		List<Teacher> getTeachering(Teacher teacher);
+	//修改个人信息
+		int myupdate(Teacher teacher);
+		
+		
+		
+		
 }

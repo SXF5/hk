@@ -151,6 +151,7 @@ public class TeacherController {
 		public ResultMsg Byincourse(String ids) {
 			//System.out.println(ids);
 			String[] teacherids = ids.split(",");
+			System.out.println(ids);
 			int i = teacherService.delAllTeacher(teacherids);
 			if(i>0) {
 				return new ResultMsg(1, "删除成功");
@@ -214,7 +215,7 @@ public class TeacherController {
 			return mv;
 		}
 		
-		
+		//保存教师评价
 		@RequestMapping("questions")
 		public ModelAndView questions(int teacherid,int teachingid) {
 			
@@ -223,6 +224,31 @@ public class TeacherController {
 	         mv.addObject("teachingid",teachingid);
 			 return mv;
 		}
+		//个人信息修改
 		
+				//int teacherid = 1;
+				@RequestMapping("myteacherup")
+				public ModelAndView myteacherup(int teacherid) {
+					Teacher teacher =  teacherService.getTeacherByid(teacherid);
+					ModelAndView mv = new ModelAndView("teacher/myteacherup");
+					mv.addObject("teacher",teacher);
+					return mv;
+				}
+				@RequestMapping("/myupdate")
+				@ResponseBody
+				public ResultMsg myupdate(String name,String teachernumber,String sex,String password,String phone) {
+					Teacher teacher =new Teacher();
+					teacher.setName(name);
+					teacher.setPassword(password);
+					teacher.setTeachernumber(teachernumber);
+					teacher.setSex(sex);
+					teacher.setPhone(phone);
+					int i = teacherService.myupdate(teacher);
+					if(i>0) {
+						return new ResultMsg(1, "修改成功");
+					}else {
+						return new ResultMsg(2, "修改失败");
+					}
+				}
 }
 

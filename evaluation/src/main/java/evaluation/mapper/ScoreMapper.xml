@@ -78,6 +78,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      	<!-- 保存教师评审成绩 -->
       <insert id="insertquestion" parameterType="evaluation.entity.Score">
        insert into  score (teacherid,question0,question1,question2,question3,question4,question5,question6,question7,question8,question9,teachingid)values(#{teacherid},#{question0},#{question1},#{question2},#{question3},#{question4},#{question5},#{question6},#{question7},#{question8},#{question9},#{teachingid})
+      </insert>  
       
-      </insert>   
+     <insert id="insertScore" parameterType="evaluation.entity.Score">
+      insert into score(scoreid,studentid,teacherid,teachingid,question0,question1,question2,question3,question4,question5,question6,question7,question8,question9)
+      values(#{scoreid},#{studentid},#{teacherid},#{teachingid},#{question0},#{question1},#{question2},#{question3},#{question4},#{question5},#{question6},#{question7},#{question8},#{question9});
+      </insert>
 </mapper>

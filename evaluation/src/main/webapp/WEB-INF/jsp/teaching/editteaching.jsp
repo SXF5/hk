@@ -18,31 +18,49 @@
             <div class="layui-row">
                 <form class="layui-form" id="form">
                   <div class="layui-form-item">
-                      <label for="facultynumber" class="layui-form-label">
-                          <span class="x-red">*</span>学院编号
+                      <label for="majorname" class="layui-form-label">
+                          <span class="x-red">*</span>专业名称
                       </label>
                       <div class="layui-input-inline">
-                          <input type="text" id="facultynumber" name="facultynumber" required="" value="${faculty.facultynumber}" lay-verify="facultynumber"
+                          <input type="text" id="majorname" name="majorname" required="" value="${teaching.tv.majorname}" lay-verify="majorname"
+                          autocomplete="off" class="layui-input">
+                      </div> 
+                  </div>
+                  <input type="hidden" id="teachingid" name="teachingid" value="${teaching.teachingid }">
+                  <div class="layui-form-item">
+                      <label for="coursename" class="layui-form-label">
+                          <span class="x-red">*</span>所授课程
+                      </label>
+                      <div class="layui-input-inline">
+                          <input type="text" id="coursename" name="coursename" required="" value="${teaching.cou.coursename}" lay-verify="coursename"
                           autocomplete="off" class="layui-input">
                       </div>
-                      
                   </div>
-                  <input type="hidden" id="facultyid" name="facultyid" value="${faculty.facultyid }">
                   <div class="layui-form-item">
-                      <label for="facultyname" class="layui-form-label">
-                          <span class="x-red">*</span>学院名称
+                      <label for="name" class="layui-form-label">
+                          <span class="x-red">*</span>授课教师
                       </label>
                       <div class="layui-input-inline">
-                          <input type="text" id="facultyname" name="facultyname" required="" value="${faculty.facultyname}" lay-verify="facultyname"
+                          <input type="text" id="name" name="name" required="" value="${teaching.tv.name }" lay-verify="name"
+                          autocomplete="off" class="layui-input">
+                      </div>
+                  </div>
+                   <div class="layui-form-item">
+                      <label for="classname" class="layui-form-label">
+                          <span class="x-red">*</span>授课班级
+                      </label>
+                      <div class="layui-input-inline">
+                          <input type="text" id="classname" name="classname" required="" value="${teaching.cla.classname }" lay-verify="classname"
                           autocomplete="off" class="layui-input">
                       </div>
                   </div>
                   
+                  
                   <div class="layui-form-item">
                       <label for="L_repass" class="layui-form-label">
                       </label>
-                      <button  class="layui-btn" lay-filter="add" lay-submit="" onClick="updateFaculty()">
-                         修改学院信息
+                      <button  class="layui-btn" lay-filter="add" lay-submit="" onClick="updateTeaching()">
+                         修改授课信息
                       </button>
                   </div>
               </form>
@@ -84,13 +102,13 @@
 
             });
         /*修改*/
-        function updateFaculty(){
-        	var url = "${pageContext.request.contextPath}/faculty/update_submit";
+        function updateTeaching(){
+        	var url = "${pageContext.request.contextPath}/teaching/update_submit";
         	var param = $("#form").serialize();
         	$.post(url, param, function(data) {
         		alert(data.content);
         		if(data.flag==1){
-        			location.href="${pageContext.request.contextPath}/faculty/facultylist";
+        			location.href="${pageContext.request.contextPath}/teaching/teachinglist";
         		}
         	});
         }

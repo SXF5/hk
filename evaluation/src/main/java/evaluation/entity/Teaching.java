@@ -11,6 +11,13 @@ public class Teaching {
 	
 	private Teach_v tv;
 	private Classtb cla;
+	private Teacher te;
+	public Teacher getTe() {
+		return te;
+	}
+	public void setTe(Teacher te) {
+		this.te = te;
+	}
 	public Classtb getCla() {
 		return cla;
 	}

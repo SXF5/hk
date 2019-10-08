@@ -94,13 +94,6 @@ function del(facultyid){
                                   <td class="td-manage">
                                     <button class="layui-btn layui-btn layui-btn-xs"  onclick="xadmin.open('编辑信息','${pageContext.request.contextPath}/faculty/update?facultyid=${item.facultyid}',330,260)" href="javascript:;">
                                         <i class="layui-icon">&#xe642;</i>修改</button>
-<%-- 
-                                  <td class="td-manage">
-                                  <button class="layui-btn layui-btn layui-btn" 
-                                       onclick="xadmin.open('编辑信息','${pageContext.request.contextPath}/faculty/update?facultyid=${item.facultyid}',600,400)" href="javascript:;">
-                                       <i class="layui-icon">&#xe642;</i>修改
-
-                                      </button> --%>
                                       <button class="layui-btn-danger layui-btn layui-btn"
                                      onclick="del('${item.facultyid}')" href="javascript:;">
                                      <i class="layui-icon">&#xe640;</i>删除

@@ -126,6 +126,7 @@ public class TeachingController {
 		   }
 	 }
 	 
+
 	//模糊查询
 			@RequestMapping("mselect")
 			public ModelAndView Mselect(String name) {
@@ -134,5 +135,9 @@ public class TeachingController {
 				mv.addObject("teachings",list);
 				return mv;
 			}
+
+	 	
+	 
+
 
 }

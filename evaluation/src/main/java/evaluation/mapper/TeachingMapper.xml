@@ -62,12 +62,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          delete from teaching where teachingid=#{teachingid}
 		</delete>
           
-          <select id="getCourse" resultMap="teachingtm">
+         <select id="getCourse" resultMap="teachingtm">
         select course.coursename,classtb.classname,teach_v.name,teach_v.majorname,teaching.teachingid
  		from teaching left JOIN course ON course.courseid=teaching.courseid
  		LEFT JOIN classtb on classtb.classid=teaching.classid
 		left JOIN teach_v on teach_v.teacherid=teaching.teacherid;
-          </select>
+         </select>
+         
+         
           
           <select id="isTeaching" parameterType="int" resultType="int">
  			select count(1) from teaching where teachingid=#{teachingid}

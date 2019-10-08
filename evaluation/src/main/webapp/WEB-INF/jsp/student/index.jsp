@@ -4,7 +4,7 @@
 <html class="x-admin-sm">
     <head>
         <meta charset="UTF-8">
-        <title>教师</title>
+        <title>学生</title>
         <meta name="renderer" content="webkit|ie-comp|ie-stand">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <!-- <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" /> -->
@@ -48,7 +48,7 @@
             </ul>
             <ul class="layui-nav right" lay-filter="">
                 <li class="layui-nav-item">
-                    <a href="javascript:;">${teach.name}</a>
+                    <a href="javascript:;">${student2.name}</a>
                     <dl class="layui-nav-child">
                         <!-- 二级菜单 -->
                         <dd>
@@ -76,7 +76,7 @@
                             <i class="iconfont nav_right">&#xe697;</i></a>
                         <ul class="sub-menu">
                             <li>
-                                <a onclick="xadmin.add_tab('个人信息','${pageContext.request.contextPath}/teacher/myteacherup?teacherid=${teach.teacherid}')">
+                                <a onclick="xadmin.add_tab('个人信息','info?studentnumber=${student2.studentnumber}')">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>个人信息</cite></a>
                             </li>  
@@ -89,13 +89,11 @@
                             <cite>评价管理</cite>
                             <i class="iconfont nav_right">&#xe697;</i></a>
                         <ul class="sub-menu">
-                        <li>
-                       
-                               <a onclick="xadmin.add_tab('同行评审','${pageContext.request.contextPath}/teacher/evateacher?teacherid=${teach.teacherid}&majorid=${teach.majorid} ')">
+                        	<li>
+                                <a onclick="xadmin.add_tab('评教','${pageContext.request.contextPath}/student/studenteva?classid=${student2.classid}&studentid=${student2.studentid}')">
                                     <i class="iconfont">&#xe6a7;</i>
-                                    <cite>同行评审</cite></a>
+                                    <cite>评教</cite></a>
                             </li>  
-                        	 
                         </ul>
                     </li>                                 
                     <li>

@@ -100,10 +100,15 @@ public class TeacherService {
 		public List<Teacher> getTeachernot(Teacher teacher) {
 			return teacherDao.getTeachernot(teacher);
 		}	
-	//個人信息修改
+	//评价
 		public List<Teacher> getTeachering(Teacher teacher){
 			
 			return teacherDao.getTeachering(teacher);
+		}
+	//個人信息修改
+public int myupdate(Teacher teacher){
+			
+			return teacherDao.myupdate(teacher);
 		}
 }
 

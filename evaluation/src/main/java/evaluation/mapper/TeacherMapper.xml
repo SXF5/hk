@@ -141,5 +141,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       select * from teacher  left join teaching  on teaching.teacherid=teacher.teacherid 
 	  where teacher.teacherid not in(#{teacherid}) and teacher.majorid=#{majorid};
      </select>
-
+<!-- 教师个人信息修改 -->
+		<update id="myupdate" parameterType="evaluation.entity.Teacher">
+			update teacher set
+			name=#{name},sex=#{sex},password=#{password},phone=#{phone}
+			where teachernumber=#{teachernumber}
+		</update>
 </mapper>

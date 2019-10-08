@@ -273,11 +273,6 @@ margin-top:10px;}
                                 		 <td>${item.cla.classname }</td> 
                                 		
 										<td class="td-manage">
-										<button class="layui-btn layui-btn layui-btn-xs" 
-										onclick="xadmin.open('编辑','${pageContext.request.contextPath}/course/course-update?courseid=${li.courseid }',600,400)"
-											href="javascript:;"> <i class="layui-icon">&#xe642;</i>修改
-										</button> 
-									
 										<button class="layui-btn-danger layui-btn layui-btn-xs"
 												onclick="del('${item.teachingid}')" href="javascript:;">
 												<i class="layui-icon">&#xe640;</i>删除

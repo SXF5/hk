@@ -33,6 +33,8 @@ public interface TeachingDao {
 	
 	List<Teaching> getCourse();
 	
+	
+	
 	int delcheck(String[] ids1);
 	//模糊查询
 	List<Teaching> mhselect(@Param("name")String name);

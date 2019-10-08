@@ -46,4 +46,7 @@ public class ScoreService {
 	public int insertquestion(Score score) {
 		return scoreDao.insertquestion(score);
 	}
+	public int insertScore(Score score) {
+		return scoreDao.insertScore(score);
+	}
 }
