@@ -78,13 +78,13 @@
 									<th lay-data="{field:'number', align:'center',width:120}">学号</th>
 									<th lay-data="{field:'name', align:'center',width:90}">姓名</th>
 									<th lay-data="{field:'time',align:'center', Width:40}">性别</th>
-									<th lay-data="{field:'tel',align:'center', Width:180}">电话号码</th>
+									<th lay-data="{field:'tel',align:'center', Width:120}">电话号码</th>
 									<th lay-data="{field:'class',align:'center', Width:60}">班级</th>
 
 									<th lay-data="{field:'birthday',align:'center', Width:120}">生日</th>
 									<th lay-data="{field:'age',align:'center', Width:60}">年龄</th>
 									<th
-										lay-data="{field:'option',align:'center',width:180,fixed: 'right'}">操作
+										lay-data="{field:'option',align:'center',width:280,fixed: 'right'}">操作
 									</th>
 								</tr>
 							</thead>
@@ -95,7 +95,6 @@
 										<td><input type="checkbox" name="" lay-skin="primary">
 										</td>
 										<td>${item.studentnumber}</td>
-
 										<td>${item.name}</td>
 										<td>${item.sex}</td>
 										<td>${item.tel}</td>
@@ -111,6 +110,9 @@
 												href="javascript:;">
 												<i class="layui-icon">&#xe642;</i>修改
 											</button>
+											<button class="layui-btn-warm layui-btn layui-btn-xs"  onclick="resetpwd('${item.studentid}')" title="重置密码" href="javascript:;">       
+                                        <i class="layui-icon">&#xe631;</i>重置密码
+                                      </button>
 											<button class="layui-btn-danger layui-btn"
 												onclick="member_del(this,'${item.studentid}')"
 												href="javascript:;">
@@ -363,7 +365,20 @@
      		 }
      	 })
       }
-      
+      //重置密码
+         function resetpwd(teacherid){
+    	  var result=confirm("是否重置?");
+    	  if(result){
+    		  var url="${pageContext.request.contextPath}/student/resetpwd";
+    		  var param={teacherid:teacherid};
+    		  $.post(url,param,function(data){
+    			  alert(data.content);
+    			  if(data.flag==1){
+    				  location.reload();
+    			  }
+    		  });  
+    	  }
+    	}
       
     </script>
 <script type="text/javascript">

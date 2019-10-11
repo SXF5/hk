@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 		</resultMap>
      	 <select id="getallcourse"  resultMap="course">
-			select * from course as co,major as ma  where co.majorid=ma.majorid;
+			select * from course as co,major as ma  where co.majorid=ma.majorid order by courseid desc;
      	 </select>
     <!-- 新增课程 -->
     	 <insert id="addcourse" parameterType="evaluation.entity.Course">

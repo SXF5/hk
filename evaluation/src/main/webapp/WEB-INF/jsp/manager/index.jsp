@@ -91,7 +91,7 @@
                     
                     <li>
                         <a href="javascript:;">
-                            <i class="iconfont left-nav-li" lay-tips="教学管理">&#xe6b8;</i>
+                            <i class="iconfont left-nav-li" lay-tips="教学管理">&#xe705;</i>
                             <cite>教学管理</cite>
                             <i class="iconfont nav_right">&#xe697;</i></a>
                         <ul class="sub-menu">
@@ -119,7 +119,7 @@
                     </li>                                 
                     <li>
                         <a href="javascript:;">
-                            <i class="iconfont left-nav-li" lay-tips="得分管理">&#xe6b8;</i>
+                            <i class="layui-icon left-nav-li" lay-tips="得分管理">&#xe63c;</i>
                             <cite>得分管理</cite>
                             <i class="iconfont nav_right">&#xe697;</i></a>
                         <ul class="sub-menu">
@@ -132,7 +132,7 @@
                     </li>                    
                     <li>
                         <a href="javascript:;">
-                            <i class="iconfont left-nav-li" lay-tips="权限管理">&#xe6b8;</i>
+                            <i class="layui-icon left-nav-li" lay-tips="权限管理">&#xe656;</i>
                             <cite>权限管理</cite>
                             <i class="iconfont nav_right">&#xe697;</i></a>
                         <ul class="sub-menu">
@@ -145,7 +145,7 @@
                     </li>
                     <li>
                         <a href="javascript:;">
-                            <i class="iconfont left-nav-li" lay-tips="Excel导入信息">&#xe6b8;</i>
+                            <i class="layui-icon left-nav-li" lay-tips="Excel导入信息">&#xe655;</i>
                             <cite>Excel导入信息</cite>
                             <i class="iconfont nav_right">&#xe697;</i></a>
                         <ul class="sub-menu">

@@ -18,9 +18,11 @@ import evaluation.entity.Student;
 import evaluation.entity.Teacher;
 import evaluation.entity.Teaching;
 import evaluation.service.ClasstbService;
+import evaluation.service.ScoreService;
 import evaluation.service.StudentService;
 import evaluation.util.Excelutil;
 import evaluation.entity.Classtb;
+import evaluation.entity.Result;
 import evaluation.entity.ResultMsg;
 import evaluation.entity.Score;
 
@@ -33,7 +35,8 @@ public class StudentController {
 	private StudentService getStus;
 	@Autowired
 	private ClasstbService claser;
-	
+	@Autowired
+	private ScoreService scoreService;
 	//学生列表
 	@RequestMapping("/studentlist")
 	public ModelAndView studentlist() {
@@ -66,14 +69,23 @@ public class StudentController {
 		return mv;
 	}
 	
-	@RequestMapping("/evalist")
+	@RequestMapping("/evalist")	
 	public ModelAndView evalist(Integer studentid,String coursename,String name,Integer teachingid) {
+		Score score=new Score();
+		score.setStudentid(studentid);
+		score.setTeachingid(teachingid);
+		int i=scoreService.getScore2(score);		
+		if(i>0) {
+			ModelAndView mv1=new ModelAndView("student/evaresult");
+			return mv1;
+		}else {
 		ModelAndView mv = new ModelAndView("student/evalist");
 		mv.addObject("studentid",studentid);
 		mv.addObject("coursename",coursename);
 		mv.addObject("name",name);
-		mv.addObject("teachingid",teachingid);
+		mv.addObject("teachingid",teachingid);	
 		return mv;
+		}
 	}
 	
 	//学生主页面
@@ -253,5 +265,16 @@ public class StudentController {
 				mv.addObject("student", student);
 				return mv;
 			}
+			//重置密码
+			 @RequestMapping("/resetpwd")
+			 @ResponseBody
+			 public Result resetpwd(int teacherid) {
+				   int i=getStus.resetpwd(teacherid);
+				   if(i>0) {
+					   return new Result(1, "重置成功");
+				   }else {
+					   return new Result(0, "重置失败");
+				   }
+			 }	
 
 }

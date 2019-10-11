@@ -54,13 +54,13 @@
                             <button class="layui-btn" onclick="xadmin.open('添加用户','./role-add.html',600,400)"><i class="layui-icon"></i>添加</button>
                         </div>
                         <div class="layui-card-body ">
-                            <table class="layui-table layui-form">
+                            <table class="layui-table layui-form" lay-filter="mylist" lay-size="lg">
                               <thead>
                                 <tr>
                                   <th>
                                     <input type="checkbox" name=""  lay-skin="primary">
                                   </th>
-                                  <th>ID</th>
+                                  <th lay-data="{field:'id', align:'center',width:60,hide:true}" style="display:none;">ID</th>
                                   <th>角色名</th>
                                   <th>权限名</th>
                                   <th>拥有权限规则</th>
@@ -74,7 +74,7 @@
                                   <td>
                                     <input type="checkbox" name=""  lay-skin="primary">
                                   </td>
-                                  <td>${item.teacherid}</td>
+                                  <td style="display:none;">${item.teacherid}</td>
                                   <td>${item.name}</td>
                                   <td><c:if test="${item.power==1}">教师</c:if>
                                       <c:if test="${item.power==2}">校领导</c:if>

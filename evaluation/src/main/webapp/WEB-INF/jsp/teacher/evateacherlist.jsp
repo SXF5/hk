@@ -61,7 +61,7 @@
 										
 								    	<td class="td-manage">
 											<button class="layui-btn layui-btn "
-												onclick="xadmin.open('评价','${pageContext.request.contextPath}/teacher/questions?teacherid=${teacherid}&teachingid=${item.teaching.teachingid}',1300,700 )"
+												onclick="xadmin.open('评价','${pageContext.request.contextPath}/teacher/questions?teacherid=${teacherid}&teachingid=${item.teaching.teachingid}',1400,700 )"
 												href="javascript:;">
 												<i class="layui-icon">&#xe642;</i>评价
 											</button>

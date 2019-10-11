@@ -21,7 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 查询所有院系 -->
 <select id="getFaculty"  resultType="evaluation.entity.Faculty">
-		select * from faculty
+		select * from faculty order by facultyid desc
 </select>
 
 <!--根据id查询院系  -->

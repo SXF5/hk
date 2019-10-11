@@ -16,7 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import evaluation.entity.Result;
 import evaluation.entity.ResultMsg;
+import evaluation.entity.Score;
 import evaluation.entity.Teacher;
+import evaluation.service.ScoreService;
 import evaluation.service.TeacherService;
 
 
@@ -31,7 +33,8 @@ public class TeacherController {
 	//注入service
 	@Autowired
 	private TeacherService teacherService;
-	
+	@Autowired
+	private ScoreService scoreService;
 	//教师主页面
 		@RequestMapping("/index")
 		public ModelAndView Index() {
@@ -128,22 +131,23 @@ public class TeacherController {
     	 return mv;
 }
 
-	 
-	 //登录判断
-	 @RequestMapping("/managerlogin")
-	 public ModelAndView  Managerlogin(Model model,Teacher teacher){
-		 model.addAttribute("teacher",teacher);
-		 ModelAndView mv=new ModelAndView("teacher/managerlogin");
-		 ModelAndView mv2=new ModelAndView("teacher/error");
-		 boolean isLogin=teacherService.login(teacher.getTeachernumber(),teacher.getPassword());
-		 if(isLogin) {
-			 System.out.println("hello");
+	//登录判断
+		 @RequestMapping("/login_submit")
+		 public ModelAndView  Login_submit(Model model,Teacher teacher){
+			 Teacher teach=teacherService.geTeacher(teacher);
+			 
+			 model.addAttribute("teach",teach);
+			 ModelAndView mv=new ModelAndView("manager/index");
+			 ModelAndView mv2=new ModelAndView("teacher/index");
+			 int isLogin=teacherService.login(teacher.getTeachernumber(),teacher.getPassword());
+			 if(isLogin==1) {
+				 System.out.println("hello");
+				 return mv2;
+			 }
 			 return mv;
+			 
 		 }
-		return mv2;
-		
-		
-	 }
+	
 	 
 	//批量删除
 		@RequestMapping("delallteacher")
@@ -218,11 +222,20 @@ public class TeacherController {
 		//保存教师评价
 		@RequestMapping("questions")
 		public ModelAndView questions(int teacherid,int teachingid) {
+			Score score=new Score();
+			score.setTeacherid(teacherid);
+			score.setTeachingid(teachingid);
+			int i=scoreService.getScorewithtea(score);
+			if(i>0) {
+				ModelAndView mv1=new ModelAndView("teacher/evaresult");
+				return mv1;
+			}else {
 			
 			 ModelAndView mv = new ModelAndView("teacher/questions");
 			 mv.addObject("teacherid",teacherid);
 	         mv.addObject("teachingid",teachingid);
 			 return mv;
+			}
 		}
 		//个人信息修改
 		

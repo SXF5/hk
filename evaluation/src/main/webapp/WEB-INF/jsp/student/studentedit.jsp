@@ -57,7 +57,7 @@
 					</label>
 					<div class="layui-input-inline">
 					
-					 <select id="classselect" name="classid">
+					<select id="classselect" name="classid">
 					 <c:forEach items="${clas}" var="item">
 				         <option value="${item.classid}">${item.classname}</option>
 				     </c:forEach>	 			

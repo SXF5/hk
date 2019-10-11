@@ -86,5 +86,10 @@ public class StudentService {
 		return studentDao.getStudentBystuno(studentnumber);
 
 	}
+	//重置密码
+	public int resetpwd(int studentid) {
+		return studentDao.resetpwd(studentid);
+	}
+	
 
 }

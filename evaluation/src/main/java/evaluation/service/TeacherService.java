@@ -60,17 +60,7 @@ public class TeacherService {
 	}	
    
     
-    //登录判断
-	public boolean login(String teachernumber,String password) {
-		Teacher teacher=new Teacher();
-		teacher.setTeachernumber(teachernumber);
-		teacher.setPassword(password);
-		Teacher t=teacherDao.getTeacher(teacher);
-		if(t!=null){
-			return true;
-		}
-		return false;
-		}
+   
 	public Teacher geTeacher(Teacher teacher) {
 		return teacherDao.getTeacher(teacher);
 	}
@@ -110,5 +100,24 @@ public int myupdate(Teacher teacher){
 			
 			return teacherDao.myupdate(teacher);
 		}
+//登录判断
+	public int login(String teachernumber,String password) {
+		Teacher teacher=new Teacher();
+		teacher.setTeachernumber(teachernumber);
+		teacher.setPassword(password);
+		Teacher t=teacherDao.getTeacher(teacher);
+		if(t.getPower()==1){
+			return 1;
+		}if(t.getPower()==2) {
+			return 2;
+		}
+		return 2;			
+	}
+
+
+
+
+
+
 }
 

@@ -44,7 +44,7 @@ public class ManagerController {
 	 }
 	
 	 //登录页面
-	@RequestMapping("/login")
+/*	@RequestMapping("/login")
 	 public ModelAndView login() {
 		 ModelAndView mv=new ModelAndView("manager/login");
 		 return mv;
@@ -66,7 +66,7 @@ public class ManagerController {
 			 return mv;
 		 }
 		return mv2;
-	 }
+	 }*/
 	 //权限查看界面
 	@RequestMapping("/adminrole")
 	public ModelAndView adminrole() {

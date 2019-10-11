@@ -78,10 +78,10 @@ function del(facultyid){
                                   <th lay-data="{type:'checkbox',fixed:'left'}">
                                    <input type="checkbox" lay-filter="checkall" name="checkall" lay-skin="primary">
                                   </th>
-                                  <th lay-data="{field:'ID', align:'center',width:215}">学院ID</th>
-                                  <th lay-data="{field:'number', align:'center',width:230}">学院编号</th>
-                                  <th lay-data="{field:'name', align:'center',width:220}">学院名称</th>
-                                  <th lay-data="{field:'option',align:'center',width:350,fixed: 'right'}">操作</th>
+                                  <th lay-data="{field:'ID', align:'center',width:314}">学院ID</th>
+                                  <th lay-data="{field:'number', align:'center',width:300}">学院编号</th>
+                                  <th lay-data="{field:'name', align:'center',width:350}">学院名称</th>
+                                  <th lay-data="{field:'option',align:'center',width:400,fixed: 'right'}">操作</th>
                               </thead>
                               <tbody>
                                <c:forEach items="${faculties}" var="item">

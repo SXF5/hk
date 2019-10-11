@@ -53,7 +53,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 
       <select id="getTeachersmajor" resultMap="teachertm">
-      	select * from teacher,major where	teacher.majorid=major.majorid;
+      	select * from teacher,major where	teacher.majorid=major.majorid order by teacherid desc;
       </select>
 
 		<!-- 教师编号密码查询 -->
@@ -62,7 +62,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       </select>     
       <!-- 所有教师查询 -->
       <select id="getTeachers" resultType="evaluation.entity.Teacher">
-		select * from teacher 
+		select * from teacher order by teacherid desc
       </select>   
 
 
@@ -101,25 +101,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		power=#{power},majorid=#{majorid} where teacherid=#{teacherid}
 	  </update>
 
-	  
+<!-- 查询教师权限 -->	  
      <select id="getteacherpower"  resultType="evaluation.entity.Teacher">
-     select * from teacher 
+     select * from teacher order by teacherid desc
      </select>
-     <!-- 教师权限修改 -->
+<!-- 教师权限修改 -->
       <update id="updatepower"  >
        update teacher set power=#{power} where teacherid=#{teacherid}
     
      </update>
-
-
-     
-
-    <update id="resetpwd" parameterType="int">
+<!-- 密码重置 -->
+      <update id="resetpwd" parameterType="int">
 		update teacher set password='123456' where teacherid=#{teacherid}
 	  </update> 
-      
-
-
+ 
 <!-- 根据多个id删除多个教师 -->
      	<delete id="delAllTeacher" parameterType="java.lang.String">
      		delete from teacher where teacherid in 
@@ -128,7 +123,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	        </foreach>  		
      	</delete>
 
- <!-- 模糊查询 -->
+<!-- 模糊查询 -->
      	<select id="mhselect" parameterType="String" resultMap="teachertm">
      		select * from teacher,major where name like '%${name}%'
      	</select>      

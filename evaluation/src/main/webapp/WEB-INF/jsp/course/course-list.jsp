@@ -57,7 +57,7 @@
                                     <th lay-data="{type:'checkbox',fixed:'left'}">
                                       <input type="checkbox" lay-filter="checkall" name="" lay-skin="primary">
                                     </th>                                   
-                                    <th lay-data="{field:'ID', align:'center',width:115}">ID</th>
+                                    <th lay-data="{field:'ID', align:'center',width:115,fixed: 'left'}">ID</th>
                                     <th lay-data="{field:'name', align:'center',width:200}">课程名</th>
                                     <th lay-data="{field:'number', align:'center',width:200}">课程编号</th>
                                     <th lay-data="{field:'major', align:'center',width:200}">所属专业</th>                                

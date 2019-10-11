@@ -49,4 +49,13 @@ public class ScoreService {
 	public int insertScore(Score score) {
 		return scoreDao.insertScore(score);
 	}
+	
+	
+	public int getScore2(Score score) {
+		return scoreDao.getScore2(score);
+	}
+	public int getScorewithtea(Score score) {
+		return scoreDao.getScorewithtea(score);
+	}
+
 }

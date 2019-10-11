@@ -39,4 +39,6 @@ public interface StudentDao {
 
 	// 根据nnumber查询
 	Student getStudentBystuno(String studentnumber);
+	//重置密码
+	int resetpwd(int studentid);
 }

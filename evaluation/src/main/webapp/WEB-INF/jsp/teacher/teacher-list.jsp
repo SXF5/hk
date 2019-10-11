@@ -58,11 +58,11 @@
 								<tr>
 									<th lay-data="{type:'checkbox',fixed:'left'}">
 									<input type="checkbox" lay-filter="checkall" name="" lay-skin="primary"></th>
-									<th lay-data="{field:'id', align:'center',width:60}">id</th>
+									<th lay-data="{field:'id', align:'center',width:60,hide: true}">id</th>
 									<th lay-data="{field:'name', align:'center',width:60}">姓名</th>
 									<th lay-data="{field:'number',align:'center', Width:60}">账号</th>
 									<th lay-data="{field:'sex',align:'center', Width:60}">性别</th>
-									<th lay-data="{field:'password',align:'center', Width:60}">密码</th>
+									<th lay-data="{field:'password',align:'center', Width:60,hide: true}">密码</th>
 									<th lay-data="{field:'tel',align:'center', Width:120}">电话</th>
 									<th lay-data="{field:'detail',align:'center', Width:120}" >生日</th>
 								
@@ -77,7 +77,7 @@
 							<c:forEach items="${teachers}" var="teacher">
 								<tr>
 									<td><input type="checkbox" name="check"  lay-skin="primary"></td>
-									<td>${teacher.teacherid}</td>
+									<td >${teacher.teacherid}</td>
 					                <td>${teacher.name}</td>
 					                <td>${teacher.teachernumber}</td>
 					                <td>${teacher.sex}</td>

@@ -21,10 +21,10 @@
 </head>
 <body class="login-bg">
     <div class="login layui-anim layui-anim-up">
-        <div class="message">教师登录</div>
+        <div class="message">登录</div>
         <div id="darkbannerwrap"></div>
         
-        <form method="post" action="${pageContext.request.contextPath}/manager/managerlogin" class="layui-form" >
+        <form method="post" action="${pageContext.request.contextPath}/teacher/login_submit" class="layui-form" >
             <input name="teachernumber" placeholder="用户名"  type="text" lay-verify="required" class="layui-input" >
             <hr class="hr15">
             <input name="password" lay-verify="required" placeholder="密码"  type="password" class="layui-input">

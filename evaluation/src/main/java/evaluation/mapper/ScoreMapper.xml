@@ -84,4 +84,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       insert into score(scoreid,studentid,teacherid,teachingid,question0,question1,question2,question3,question4,question5,question6,question7,question8,question9)
       values(#{scoreid},#{studentid},#{teacherid},#{teachingid},#{question0},#{question1},#{question2},#{question3},#{question4},#{question5},#{question6},#{question7},#{question8},#{question9});
       </insert>
+      
+      <select id="getScore2" parameterType="evaluation.entity.Score" resultType="int">
+      select count(*) from score where studentid=#{studentid} and teachingid=#{teachingid}
+      </select>
+      
+       <select id="getScorewithtea" parameterType="evaluation.entity.Score" resultType="int">
+      select count(*) from score where teacherid=#{teacherid} and teachingid=#{teachingid}
+      </select>
+      
 </mapper>

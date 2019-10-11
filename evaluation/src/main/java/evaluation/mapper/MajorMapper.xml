@@ -17,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>  
             
       <select id="getMajor" resultMap="major">
-      select * from major,faculty where major.facultyid=faculty.facultyid; 
+      select * from major,faculty where major.facultyid=faculty.facultyid order by majorid desc; 
       </select>     
       
       <!-- 删除专业 -->

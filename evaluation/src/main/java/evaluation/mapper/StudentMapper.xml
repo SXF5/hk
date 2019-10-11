@@ -52,32 +52,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 <select id="getStudent" parameterType="evaluation.entity.Student" resultType="evaluation.entity.Student">
 		select * from student where studentnumber=#{studentnumber} and password=#{password}
       </select> 
+      
       <select id="getStus" resultMap="studentm">
       	select * from student,classtb where
-		student.classid=classtb.classid
+		student.classid=classtb.classid order by student.studentid desc
       </select>
       
-      <!-- 根据id查询学生 -->
+<!-- 根据id查询学生 -->
        <select id="getStudentBystuid"  resultMap="studentm">
 	   select * from student,classtb where studentid=#{studentid} and student.classid=classtb.classid
 	  </select>
 	  
 
-	  <!-- 添加学生 -->
+<!-- 添加学生 -->
 	  <insert id="studentadd" parameterType="evaluation.entity.Student">
 	  insert into student (studentnumber,name,password,power,classid)values(#{studentnumber},#{name},#{password},#{power},#{classid})
 	  </insert>
-	  <!-- 修改学生 -->
+<!-- 修改学生 -->
 	  <update id="updateStudent" >
 	  update student set studentnumber=#{studentnumber},classid=#{classid} where studentid=#{studentid} 
 	  </update>
 	  
-	  <!-- 根据id删除学生 -->
+<!-- 根据id删除学生 -->
 	  <delete id="studentdel">
 	  delete from student where studentid=#{studentid}	  
 	  </delete>
 	  
-	  <!-- 根据多个id批量删除学生 -->
+<!-- 根据多个id批量删除学生 -->
 	  <delete id="studentall" parameterType="String">
 	   delete from student where studentnumber in
 	   <foreach collection="array" item="aa1" open="(" separator="," close=")">
@@ -86,7 +87,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  </delete>
 	  
 
-	   <!-- 模糊查询 -->
+<!-- 模糊查询 -->
      	<select id="mhselect" parameterType="String" resultMap="studentm">
      		select * from student,classtb where name like '%${name}%'
      	</select>
@@ -96,15 +97,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  left join teacher on teaching.teacherid=teacher.teacherid  where teaching.classid=#{classid}
 	  </select>
 	  
-	  <!-- 根据number查询学生 -->
+<!-- 根据number查询学生 -->
        <select id="getStudentBystuno"  resultMap="studentm">
 	   select * from student,classtb where studentnumber=#{studentnumber} and student.classid=classtb.classid
 	  </select>
 	  
-	  <!-- 学生信息修改 -->
+<!-- 学生信息修改 -->
 	  <update id="Studentupdate">
 	  update student set name=#{name},sex=#{sex},tel=#{tel},password=#{password} where studentnumber=#{studentnumber}
 	  </update>
-	  
+<!-- 密码重置 -->
+      <update id="resetpwd" parameterType="int">
+		update student set password='123456' where studentid=#{studentid}
+	  </update> 	  
 
 </mapper>

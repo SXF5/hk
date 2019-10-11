@@ -26,4 +26,8 @@ public interface ScoreDao {
 	//保存问题
 	int insertquestion(Score score);
     int insertScore(Score score);
+    
+    int getScore2(Score score);
+    int getScorewithtea(Score score);
+
 }

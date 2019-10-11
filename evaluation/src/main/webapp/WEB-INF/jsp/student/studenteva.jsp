@@ -71,7 +71,7 @@
                                 		
 										<td class="td-manage">
 										<button class="layui-btn-danger layui-btn layui-btn-xs"
-												onclick="xadmin.open('评价教师','${pageContext.request.contextPath}/student/evalist?studentid= ${ studentid}&coursename=${item.cou.coursename}&name=${item.te.name}&teachingid=${item.teachingid }',800,550)" href="javascript:;">
+												onclick="xadmin.open('评价教师','${pageContext.request.contextPath}/student/evalist?studentid= ${ studentid}&coursename=${item.cou.coursename}&name=${item.te.name}&teachingid=${item.teachingid }',1300,700)" href="javascript:;">
 												<i class="layui-icon">&#xe642;</i>评价
 											</button>
 										</td>
